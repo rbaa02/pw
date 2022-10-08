@@ -1,4 +1,3 @@
-let inputValue;
 const ul = document.querySelector("ul");
 const h1 = document.querySelector("h1");
 
