@@ -1,0 +1,17 @@
+table{
+    border: 5px solid #666;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+td{
+    width: 70px;
+    height: 70px;
+}
+
+img{
+    width: 65px;
+    height: 65px;
+    user-select: none;
+    margin: 0px;
+}
