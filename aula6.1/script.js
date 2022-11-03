@@ -58,13 +58,16 @@ function criaAlteraTexto() {
 }
 
 function alteraTexto(e) {
+    e.target.disabled = !e.target.disabled;
     const tarefa = e.target.parentNode;
+    const texto = tarefa.childNodes[1];
     const input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("id", "altera");
     input.addEventListener("blur", (et) => {
         if (et.target.value == "") {
             et.target.remove();
+            e.target.disabled = !e.target.disabled;
             return;
         }
         e.target.disabled = !e.target.disabled;
@@ -77,20 +80,13 @@ function alteraTexto(e) {
                 registro["texto"] = et.target.value;
                 db.put(registro, key);
             };
-            alteraTexto2(et.target.value);
+            texto.textContent = et.target.value + " ";
             e.disabled = !e.disabled;
             et.target.remove();
         });
     });
     tarefa.appendChild(input);
     input.focus();
-    function alteraTexto2(texto) {
-        tarefa.innerText = "";
-        tarefa.append(criaCheckbox());
-        tarefa.append(texto + " ");
-        tarefa.append(criaLixeira());
-        tarefa.append(criaAlteraTexto());
-    }
 }
 
 function atribuiEstiloOculto(evento) {
@@ -164,4 +160,3 @@ function carregaTarefas(db) {
         }
     };
 }
-
