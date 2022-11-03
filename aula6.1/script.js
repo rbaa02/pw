@@ -58,13 +58,16 @@ function criaAlteraTexto() {
 }
 
 function alteraTexto(e) {
-    e.target.disabled = !e.target.disabled;
     const tarefa = e.target.parentNode;
     const input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("id", "altera");
     input.addEventListener("blur", (et) => {
-        console.log(et.target.value);
+        if (et.target.value == "") {
+            et.target.remove();
+            return;
+        }
+        e.target.disabled = !e.target.disabled;
         withDB((db) => {
             let id = e.target.parentNode.id;
             let key = parseInt(id.slice(5));
@@ -80,6 +83,7 @@ function alteraTexto(e) {
         });
     });
     tarefa.appendChild(input);
+    input.focus();
     function alteraTexto2(texto) {
         tarefa.innerText = "";
         tarefa.append(criaCheckbox());
